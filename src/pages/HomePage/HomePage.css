@@ -11,3 +11,20 @@
     font-family: 'Montserrat', sans-serif;
     padding: 20px;
 }
+.homepage-page >a{
+    background-color: rgb(219, 243, 243);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 3em;
+    color: teal;
+    font-weight: bolder;
+    margin: 20px;
+    border-radius: 50%;
+    border: transparent;
+}
+.homepage-page >a:hover{
+    background-color:teal;
+    color:white;
+    font-size: larger;
+    border: transparent;
+
+}
