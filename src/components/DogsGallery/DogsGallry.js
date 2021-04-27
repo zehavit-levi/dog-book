@@ -1,16 +1,24 @@
 
 import BreedCard from "../BreedCard/BreedCard";
-
-export default function DogGallery({models, breeds, setBreedsModels}) {
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+export default function DogGallery({ breeds, addModel}) {
 
 
 
     const cards = breeds.map((breed, index) => {
         return (
-            <BreedCard breed={breed} key={index} setBreedsModels={setBreedsModels} models={models} ></BreedCard>
+            <BreedCard breed={breed} key={index} addModel={addModel} ></BreedCard>
         )
     })
-    return (<div>{cards ? cards : ""}</div>
+    return (
+        <ResponsiveMasonry
+        columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+    >
+        <Masonry>
+        {cards ? cards : ""}
+        </Masonry>
+    </ResponsiveMasonry>
+    
 
 
     )
