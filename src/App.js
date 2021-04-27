@@ -9,8 +9,6 @@ import SpecificBreedPage from './pages/SpecificBreedPage/SpecificBreedPage';
 import { CSSTransition } from 'react-transition-group';
 function App() {
   
-
-
   return (
     <Container>
       <HashRouter>
