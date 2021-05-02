@@ -1,27 +1,37 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import BreedModel from "../../models/BreedModel/BreedModel";
+import './BreedCard.css';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
-export default function BreedCard({ breed, addModel}) {
-    const [model, setModel] = useState();
+export default function BreedCard({ name}) {
+    const [img, setImg] = useState("https://www.bil-jac.com/Images/DogPlaceholder.svg")
+    const [redirectTo, setRedirectTo] = useState("");
+    const history = useHistory();
     
     useEffect(() => {
-        axios.get("https://dog.ceo/api/breed/" + breed + "/images/random")
-        .then(response => setModel(new BreedModel(breed, response.data.message)));
-       
-    }, [breed]);
+        axios.get("https://dog.ceo/api/breed/" + name + "/images/random")
+            .then(res => {
+                setImg(res.data.message);
 
-    return (
-        <div> {model ? <Card className="breed-card">
-            <Card.Img src={model.image}/>
-            <Card.Body>
-                <Card.Title>{model.name}</Card.Title>
-            </Card.Body>
-        </Card> : ""}
+            })
+    }, [name]);
+    if (redirectTo) {
+        return <Redirect to={'/breeds/' + redirectTo} />
+    } else {
+        return (
+            <Card className="breed-card">
 
-        </div>
+                <Card.Img src={img} onClick={() => {
+                    history.push('/breeds/' + name);
+                    setRedirectTo('/breeds/' + name);
+                }} />
+                <Card.Body>
+                    <Card.Title>{name}</Card.Title>
+                </Card.Body>
+            </Card>
 
-    )
 
+        )
+    }
 }

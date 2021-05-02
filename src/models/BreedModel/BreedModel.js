@@ -1,14 +1,7 @@
 export default class BreedModel {
-    constructor(name,image){
+    constructor(name,id){
         this.name = name;
-        this.image = image;
-        console.log("name: ",name,"image: " ,image);
-       
+        this.id = id;
     }
-
-    changeImage = (newImage) => {
-        this.image = newImage;
-    }
-
 
 }
